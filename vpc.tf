@@ -2,7 +2,7 @@ module "vpc-a" {
   source     = "terraform-google-modules/network/google"
   project_id = var.project_id
 
-  network_name = "vpc-a"
+  network_name = "${var.prefix}-vpc-a"
 
   subnets = [
     {
@@ -18,7 +18,7 @@ module "vpc-b" {
   source     = "terraform-google-modules/network/google"
   project_id = var.project_id
 
-  network_name = "vpc-b"
+  network_name = "${var.prefix}-vpc-b"
 
   subnets = [
     {
@@ -34,7 +34,7 @@ module "vpc-datacenter" {
   source = "terraform-google-modules/network/google"
 
   project_id   = var.project_id
-  network_name = "datacenter"
+  network_name = "${var.prefix}-vpc-dc"
 
   subnets = [
     {
@@ -50,7 +50,7 @@ module "vpc-transit" {
   source     = "terraform-google-modules/network/google"
   project_id = var.project_id
 
-  network_name = "transit"
+  network_name = "${var.prefix}-vpc-transit"
 
   subnets = []
 }
@@ -59,7 +59,7 @@ module "vpc-shared-services" {
   source     = "terraform-google-modules/network/google"
   project_id = var.project_id
 
-  network_name = "shared-services"
+  network_name = "${var.prefix}-shared-services"
 
   subnets = [
     {
