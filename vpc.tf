@@ -52,7 +52,14 @@ module "vpc-transit" {
 
   network_name = "${var.prefix}-vpc-transit"
 
-  subnets = []
+  subnets = [
+    {
+      subnet_name           = "transit-subnet-1"
+      subnet_ip             = "10.0.3.0/24"
+      subnet_region         = var.region
+      subnet_private_access = "true"
+    }
+  ]
 }
 
 module "vpc-shared-services" {
