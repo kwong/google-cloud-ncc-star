@@ -83,3 +83,18 @@ resource "google_network_connectivity_spoke" "spoke-vpc-sharedservices" {
     uri = module.vpc-shared-services.network_id
   }
 }
+
+resource "google_network_connectivity_spoke" "spoke-vpn-tunnel" {
+  name        = "spoke-vpn-tunnel-1"
+  location    = var.region
+  description = "spoke-vpn-tunnel-1"
+
+  hub   = google_network_connectivity_hub.hub.id
+  group = google_network_connectivity_group.center.id
+
+  linked_vpn_tunnels {
+    uris = [module.vpn-ha-1.tunnel_self_links["remote-0"]]
+    site_to_site_data_transfer = true
+    include_import_ranges      = ["ALL_IPV4_RANGES"]
+  }
+}
