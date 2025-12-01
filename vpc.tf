@@ -59,14 +59,15 @@ module "vpc-shared-services" {
   source     = "terraform-google-modules/network/google"
   project_id = var.project_id
 
-  network_name = "${var.prefix}-shared-services"
+  network_name = "${var.prefix}-vpc-shared-services"
 
   subnets = [
     {
       subnet_name           = "shared-subnet-1"
-      subnet_ip             = "10.2.0.0/24"
+      subnet_ip             = "10.150.0.0/24"
       subnet_region         = var.region
       subnet_private_access = "true"
+      
     }
   ]
 }
