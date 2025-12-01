@@ -17,9 +17,10 @@ module "vpn-ha-1" {
       bgp_peer_options = {
         advertise_mode = "CUSTOM"
         advertise_ip_ranges = {
-          "10.2.0.0/24" = "vpc-shared",
-          "10.0.1.0/24" = "vpc-a",
-          "10.0.2.0/24" = "vpc-b",
+          "10.150.0.0/24" = "vpc-shared",
+          "10.0.0.0/24" = "vpc-a",
+          "10.0.1.0/24" = "vpc-b",
+          "10.0.3.0/24" = "vpc-transit"
         }
         advertise_groups = ["ALL_SUBNETS"]
         route_priority   = 100
@@ -51,17 +52,15 @@ module "vpn-ha-2" {
         address = "169.254.1.2"
         asn     = 64514
       }
-      bgp_peer_options = {
-        advertise_mode = "CUSTOM"
-        advertise_ip_ranges = {
-          "10.2.0.0/24" = "vpc-shared",
-          "10.0.1.0/24" = "vpc-a",
-          "10.0.2.0/24" = "vpc-b",
-        }
-        advertise_groups = ["ALL_SUBNETS"]
-        route_priority   = 100
+      #bgp_peer_options = {
+        #advertise_mode = "CUSTOM"
+        # advertise_ip_ranges = {
+        #   "10.2.0.0/24" = "vpc-dc"
+        # }
+       # advertise_groups = ["ALL_SUBNETS"]
+        #route_priority   = 100
 
-      }
+      #}
 
       bgp_session_range               = "169.254.1.1/30"
       ike_version                     = 2
